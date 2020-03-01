@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html lang="en" style="padding-top: 80px;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Quid</title> <!--INSERT TITLE-->
+
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="static/main.js"></script>
+    <script src="static/chart.js"></script>
+    
+    <script language = "javascript">
+        function clickAddRow(){
+        $.get("/addRow"),{},function(response){
+       //Implement images/design last
+       //1
+        var table = document.getElementById("myTable");
+        var x  = table.insertRow(0);
+        var a = table.rows.length-1;
+        var l = table.rows[a].cells.length;
+
+        for(var c = 0, m = 1; c < m; c++)
+        {
+            table.rows[0].insertCell(c);
+            table.rows[0].cells[c].innerHTML = "&nbsp;&nbsp";
+
+        }
+       //2
+        $(table).find('tbody').append("<tr><td>aaaa</td></tr>");
+       //3
+        tableRef.insertRow(tableRef.rows.length);
+       //4
+       var tableRef = document.getElementById('myTable').getElementsByTagName('tbody')[0];
+
+       var newRow = tableRef.insertRow();
+    }
+}
+    </script>
+    
+    <style>
+        div.fixed {
+    position: fixed;
+     bottom: 0;
+     left: 0;
+    width: 275px;
+    }
+    #background {
+        background-image: url('assets/background1.png'), url('assets/background2.png'), url('assets/background3.png');
+        background-attachment: fixed;
+        background-repeat: no-repeat, repeat;
+        background-size: cover;
+    }
+    
+
+    .body {
+        background-image: url('assets/background1.png'), url('assets/background2.png'), url('assets/background3.png');
+  		background-color: lightblue;  
+        align-content: center;
+	}
+
+    .header{
+        text-align: center;
+    }
+
+    .main{
+        text-align: center;
+    }
+    .button {
+      background-color: rgb(107, 161, 152);
+      border: none;
+      color: black;
+      display:block;
+      padding: 15px 32px;
+      text-align: center;
+      align-items: center;  
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      font-family: "Varela Round";
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 50%;
+      border: 2px solid #4CAF50; 
+      transition-duration: 0.4s;
+    }
+    .button:hover{
+        background-color: rgb(51, 71, 68);
+    }
+    .container img{
+        width: 100%;
+        height: auto;
+        text-align: center;
+    }
+    .column{
+        float: left;
+        width: 25%;
+        padding: 10px;
+    }
+
+    .row:after{
+        content: "";
+        display: table;
+        clear: both;
+    }
+    </style>
+</head>
+
+<body class = "body">
+    
+    <div class = "container">
+        <h1 class = "header">  <img src = "assets/logo_hackmercedV.png" style="width:528px;height:220px;" > </h1> <!--INSERT APPLICATION NAME--> 
+        <h2 class = "month" id = "month">  </h2>
+        <main class = "main">
+            <div class = "container">
+                <div class = "row">
+                    <div class = "column">
+                        <h4>Name</h4>
+                        <input name = "name_input" id = "myName" value = "name">
+                    </div>
+                    <div class = "column"> 
+                        <h4>Price</h4>
+                        <input price = "price_input" id = "myPrice" value = "21">
+                    </div>
+                    <div class = "column">
+                        <h4>Quantity</h4>
+                        <input quantity = "quantity_input" id = myQuantity value = "21">
+                    </div>
+                    <div class = "column">
+                    <h4>Category</h4>
+                    <select category = "category_selection">
+                                <option None = "none">None</option>
+                                <option option1 = "food">Food</option> <!--PLACEHOLDERS-->>
+                                <option option2 = "material">Material</option>
+                    </select> <!--  <div category = "category_area"></td>-->
+                    </div>
+                </div>
+            <br></br>
+                <!--<button class = "button" onclick = "clickAddRow()">Add Row</button>
+                <button class = "button" onclick = "clickAddMonth()">Add Month</button> -->
+                <button class = "button" onclick = "clickFinish()">Finish</button><br></br> 
+            </div>
+        </div>
+        <p id="demo"></p>
+        
+        
+        <!--<script>
+            function clickFinish() {
+              var x = document.getElementById("myName").value;
+              document.getElementById("demo").innerHTML = x;
+              var y = document.getElementById("myPrice").value;
+              document.getElementById("demo").innerHTML = y;
+              var z = document.getElementById("myQuantity").value;
+              document.getElementById("demo").innerHTML = z;
+            } 
+        </script>-->
+
+        <canvas id="myChart" style="position: relative; height:40vh; width:80vw"></canvas>
+        <script>
+            function clickFinish(){
+            var ctx = document.getElementById('myChart');
+            var myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Total Spendings',
+                        data: [5, 2, 20, 14, 7, 9, 17, 11, 12, 12,13, 3],  
+                     backgroundColor: [
+                            "#3e95cd", "#3cc7b0", "#37cc6b", "#52cc37", "#cede21", "#e8b320", 
+                            "#fc953a", "#ed4426", "#2629ed", "#ae26ed", "#ed26cc","#a12228"  
+                        ],
+                        
+                       
+                 }]
+             },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            scaleLabel: true,
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                scaleLabel: true,
+                                beginAtZero: true
+                         }
+                        }]
+                 }
+             }
+            });
+        }
+            </script>
+            
+            <div class="fixed">
+            <audio id="myaudio" controls autoplay src="assets/untitled1.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="myaudio" controls autoplay src="assets/untitled2.mp3" type="audio/mpeg">
+            </audio>
+            <audio id="myaudio" controls autoplay src="assets/untitled3.mp3" type="audio/mpeg">
+            </audio>
+            </div>
+            
+    </main>
+    
+</body>
+
+<footer></footer> <!--INSERT SOCIAL MEDIA LINKS/ICONS-->
+
+</html>
